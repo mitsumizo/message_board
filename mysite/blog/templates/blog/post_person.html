@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% for data in datas %}
+                <div class="post">
+                    <div class="date">
+                        <p>投稿日時: {{ data.time }}</p>
+                    </div>
+                    <h1 id="name"><a href="{% url 'post_detail' pk=data.pk %}">{{ data.name }}</a></h1>
+                    <p><span id="line">投稿内容<br><br></span>{{ data.content|linebreaksbr }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
