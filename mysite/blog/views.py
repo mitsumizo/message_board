@@ -24,11 +24,17 @@ def post_detail(request, pk):
 
 
 def post_new(request):
+
     if request.method == "POST":
+        time_st = time.time()
         form = PostForm(request.POST)
         if form.is_valid():
             data = form.save(commit=False)
             data.time = timezone.now()
+            datas = Data.objects.filter(name=data.name).order_by('-time')
+            if (data.time - datas[0].time).seconds < 15:
+                return redirect('error_page')
+
             host = socket.gethostname()
             data.ipaddress = socket.gethostbyname(host)
             data.save()
