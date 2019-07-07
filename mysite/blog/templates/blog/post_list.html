@@ -8,10 +8,25 @@
                     <div class="date">
                         <p>投稿日時: {{ data.time }}</p>
                     </div>
-                    <h1 id="name"><a href="{% url 'post_detail' pk=data.pk %}">{{ data.name }}</a></h1>
-                    <p id="person_id">投稿者ID：{{ data.person_id }}</p>
-                    <p><a href="{% url 'post_person' target_name=data.name %}">{{ data.name }}でグループ化</a></p>
-                    <p><span id="line">投稿内容<br><br></span>{{ data.content|linebreaksbr }}</p>
+                    <p id="name">{{ data.name }}
+                        <a href="{% url 'post_detail' pk=data.pk %}">
+                            詳細
+                        </a>
+                    </p>
+                    <p id="person_id">
+                        投稿者ID：{{ data.person_id }}
+                    </p>
+                    <p>
+                        <a href="{% url 'post_person' target_name=data.name %}">
+                            {{ data.name }}でグループ化
+                        </a>
+                    </p>
+                    <p>
+                        <span id="line">
+                            投稿内容<br><br>
+                        </span>
+                        {{ data.content|linebreaksbr }}
+                    </p>
                 </div>
             {% endfor %}
         </div>
